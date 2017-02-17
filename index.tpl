@@ -13,11 +13,11 @@
   } );
   </script>
  <script>  
-  function call(el) {
+  function call(el,id) {
         $.ajax({
           type: 'POST',
           url: 'todo.php',
-		  data: 'i='+el,
+		  data: 'i='+el+'&id='+id,
           success: function(data) {
             $('#colm'+el).html(data);
           },
