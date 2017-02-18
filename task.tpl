@@ -54,7 +54,7 @@ function cal_hard(el) {
 </head>
 
 <body>
-
+<a href="index.php"> <<Вернуться к списку задач</a>
 <script> call('1','{id}') </script><div id="colm1">вывод</div>
 {out}
 <table width="100%" border="0">

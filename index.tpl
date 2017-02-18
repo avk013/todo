@@ -57,8 +57,7 @@ function cal_hard(el) {
 	alert('Возникла ошибка: ' + xhr.responseCode);
    }});
   }
-  $("#button").click(function(){ AjaxFormRequest('messegeResult', 'form1', 'add.php'); return false; });
-   function AjaxFormRequest(result_id,form_id,url) {
+    function AjaxFormRequest(result_id,form_id,url) {
                 jQuery.ajax({
                     url:     url, //Адрес подгружаемой страницы
                     type:     "POST", //Тип запроса
@@ -87,14 +86,14 @@ function cal_hard(el) {
 
 <table width="100%" border="0">
   <tr>
-    <td><form id="form1" name="form1" action="add.php" method="post">
+    <td><form id="form1" name="form1" action="" >
       <label>
         событие:
           <textarea name="done" rows="2" id="done"></textarea>
         Date: <input type="text" id="datepicker" name="datepicker" />
       </label>
       <label>
-        <input type="submit" name="button" id="button" value="Отправить" />
+        <input type="submit" name="button" id="button" value="Отправить" onclick="AjaxFormRequest('result_div_id', 'form1', 'add.php')"/>
       </label>
     </form></td>
   </tr>
