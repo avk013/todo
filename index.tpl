@@ -9,7 +9,9 @@
   
  <script>
   $( function() {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({
+  dateFormat: "dd/mm/yy"
+});
   } );
   </script>
  <script>  
@@ -55,6 +57,20 @@ function cal_hard(el) {
 	alert('Возникла ошибка: ' + xhr.responseCode);
    }});
   }
+  $("#button").click(function(){ AjaxFormRequest('messegeResult', 'form1', 'add.php'); return false; });
+   function AjaxFormRequest(result_id,form_id,url) {
+                jQuery.ajax({
+                    url:     url, //Адрес подгружаемой страницы
+                    type:     "POST", //Тип запроса
+                    dataType: "html", //Тип данных
+                    data: jQuery("#"+form_id).serialize(), 
+                    success: function(response) { //Если все нормально
+                    document.getElementById(result_id).innerHTML = response;
+                },
+                error: function(response) { //Если ошибка
+                document.getElementById(result_id).innerHTML = "Ошибка при отправке формы";
+                }
+             });}
   </script>
   
 </head>
@@ -71,7 +87,7 @@ function cal_hard(el) {
 
 <table width="100%" border="0">
   <tr>
-    <td><form id="form1" name="form1" method="post" action="add.php">
+    <td><form id="form1" name="form1" action="add.php" method="post">
       <label>
         событие:
           <textarea name="done" rows="2" id="done"></textarea>
