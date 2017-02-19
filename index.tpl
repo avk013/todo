@@ -4,9 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>todo</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
  <script>
   $( function() {
     $( "#datepicker" ).datepicker({
@@ -24,7 +23,7 @@
             $('#colm'+el).html(data);
           },
           error:  function(xhr, str){
-	    alert('Возникла ошибка: ' + xhr.responseCode);
+	    //alert('Возникла ошибка: ' + xhr.responseCode);
           }}); 
     }
 	  function call_check(el) {
@@ -36,27 +35,14 @@
             $('#colm'+el).html(data);
           },
           error:  function(xhr, str){
-	    alert('Возникла ошибка: ' + xhr.responseCode);
+	    //alert('Возникла ошибка: ' + xhr.responseCode);
           }}); 
     }
 	$(document).ready(function(){  
             call("1");call("2");
-            setInterval('call("1");',3000);  
-			 setInterval('call("2")',3000);  
+            setInterval('call("1");',2000);  
+			 setInterval('call("2")',2000);  
         });  
-function cal_hard(el) {
-	var msg   = $('#formx1').serialize();
-   $.ajax({
-   type: 'POST',
-   url: 'add.php',
-    data: 'msg',
-   success: function(data){
-    $('#results').html(data);
-    },
-	error:  function(xhr, str){
-	alert('Возникла ошибка: ' + xhr.responseCode);
-   }});
-  }
     function AjaxFormRequest(result_id,form_id,url) {	
 	var error=false;
 	var dates=$("#datepicker").val();
@@ -108,7 +94,7 @@ function validate_date(value)
         Date: <input type="text" id="datepicker" name="datepicker"/>
       </label>
       <label>
-        <input type="submit" name="button" id="button" value="Отправить" onclick="AjaxFormRequest('result_div_id', 'form1', 'add.php')"/>
+        <input type="reset" name="button" id="button" value="Отправить" onclick="AjaxFormRequest('result_div_id', 'form1', 'add.php')"/>
       </label>
     </form></td>
   </tr>
