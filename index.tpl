@@ -57,8 +57,12 @@ function cal_hard(el) {
 	alert('Возникла ошибка: ' + xhr.responseCode);
    }});
   }
-    function AjaxFormRequest(result_id,form_id,url) {
-                jQuery.ajax({
+    function AjaxFormRequest(result_id,form_id,url) {	
+	var error=false;
+	var dates=$("#datepicker").val();
+	if (!validate_date(dates)) error=true;;
+              if(!error)
+{			  jQuery.ajax({
                     url:     url, //Адрес подгружаемой страницы
                     type:     "POST", //Тип запроса
                     dataType: "html", //Тип данных
@@ -69,7 +73,18 @@ function cal_hard(el) {
                 error: function(response) { //Если ошибка
                 document.getElementById(result_id).innerHTML = "Ошибка при отправке формы";
                 }
-             });}
+             });}}
+function validate_date(value)
+{  var arrD = value.split("/");
+  arrD[1] -= 1;
+  var d = new Date(arrD[2], arrD[1], arrD[0]);
+  if ((d.getFullYear() == arrD[2]) && (d.getMonth() == arrD[1]) && (d.getDate() == arrD[0])) {
+    return true;
+  } else {
+    alert("Введена некорректная дата!");
+    return false;
+  }
+}
   </script>
   
 </head>
@@ -90,7 +105,7 @@ function cal_hard(el) {
       <label>
         событие:
           <textarea name="done" rows="2" id="done"></textarea>
-        Date: <input type="text" id="datepicker" name="datepicker" />
+        Date: <input type="text" id="datepicker" name="datepicker"/>
       </label>
       <label>
         <input type="submit" name="button" id="button" value="Отправить" onclick="AjaxFormRequest('result_div_id', 'form1', 'add.php')"/>
